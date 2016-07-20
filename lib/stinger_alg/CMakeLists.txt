@@ -11,6 +11,7 @@ set(sources
   src/weakly_connected_components.c
   src/streaming_connected_components.c
   src/streaming_betweenness.cpp
+  src/streaming_clustering.cpp
 )
 set(headers
   inc/adamic_adar.h
@@ -26,6 +27,8 @@ set(headers
   inc/streaming_connected_components.h
   inc/streaming_betweenness.h
   inc/streaming_algorithm.h
+  inc/streaming_betweenness.h
+  inc/streaming_clustering.h
 )
 
 file(COPY ${headers} DESTINATION "${CMAKE_BINARY_DIR}/include/stinger_alg")
