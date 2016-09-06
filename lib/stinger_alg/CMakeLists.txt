@@ -5,6 +5,7 @@ set(sources
   betweenness/src/dynamic_betweenness.cpp
 
   bfs/src/bfs.c
+  bfs/src/dynamic_bfs.cpp
 
   clustering/src/clustering.c
   clustering/src/dynamic_clustering.cpp
@@ -41,6 +42,7 @@ set(headers
   betweenness/inc/dynamic_betweenness.h
 
   bfs/inc/bfs.h
+  bfs/inc/dynamic_bfs.h
 
   clustering/inc/clustering.h
   clustering/inc/dynamic_clustering.h
