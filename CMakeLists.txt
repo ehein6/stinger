@@ -21,6 +21,13 @@ if(STINGER_USE_TCP)
   add_definitions(-DSTINGER_USE_TCP)
 endif()
 
+set(STINGER_USE_CONTIGUOUS_ALLOCATION TRUE CACHE BOOL
+  "Use a single memory allocation for the entire stinger data structure. Must be enabled to use shared memory."
+)
+if(STINGER_USE_CONTIGUOUS_ALLOCATION)
+  add_definitions(-DSTINGER_USE_CONTIGUOUS_ALLOCATION)
+endif()
+
 find_package( OpenMP )
 if(OPENMP_FOUND)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
