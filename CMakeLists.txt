@@ -188,12 +188,14 @@ add_test(StingerDiameterTest ${CMAKE_BINARY_DIR}/bin/stinger_diameter_test)
 add_test(StingerIndependentSetsTest ${CMAKE_BINARY_DIR}/bin/stinger_independent_sets_test)
 add_test(StingerShortestPathsTest ${CMAKE_BINARY_DIR}/bin/stinger_shortest_paths)
 
-find_program(BASH bash REQUIRED)
-add_test(
-  NAME ClientServerTest
-  COMMAND ${BASH} "${CMAKE_SOURCE_DIR}/src/tests/client_server_test/client_server_test.sh" "${CMAKE_BINARY_DIR}" "${STINGER_USE_TCP}"
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/util/
-)
+if (STINGER_USE_CONTIGUOUS_ALLOCATION)
+  find_program(BASH bash REQUIRED)
+  add_test(
+    NAME ClientServerTest
+    COMMAND ${BASH} "${CMAKE_SOURCE_DIR}/src/tests/client_server_test/client_server_test.sh" "${CMAKE_BINARY_DIR}" "${STINGER_USE_TCP}"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/util/
+  )
+endif()
 
 add_custom_target(check
   COMMAND ${CMAKE_CTEST_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1 --verbose

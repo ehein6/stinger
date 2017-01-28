@@ -68,6 +68,7 @@ TEST(StingerCoreCreationTest, AllocateStinger) {
   stinger_free_all(S);
 }
 
+#ifdef STINGER_USE_CONTIGUOUS_ALLOCATION
 TEST(StingerCoreCreationTest, AllocateSharedStinger) {
   struct stinger_config_t * stinger_config;
   struct stinger * S;
@@ -87,6 +88,7 @@ TEST(StingerCoreCreationTest, AllocateSharedStinger) {
   stinger_shared_free(S,graph_name,graph_sz);
   xfree(graph_name);
 }
+#endif
 
 TEST(StingerCoreCreationTest, AllocateLargeStinger) {
   struct stinger_config_t * stinger_config;
@@ -104,6 +106,7 @@ TEST(StingerCoreCreationTest, AllocateLargeStinger) {
   stinger_free_all(S);
 }
 
+#ifdef STINGER_USE_CONTIGUOUS_ALLOCATION
 TEST(StingerCoreCreationTest, AllocateLargeSharedStinger) {
   struct stinger_config_t * stinger_config;
   struct stinger * S;
@@ -125,6 +128,7 @@ TEST(StingerCoreCreationTest, AllocateLargeSharedStinger) {
   stinger_shared_free(S,graph_name,graph_sz);
   xfree(graph_name);
 }
+#endif
 
 TEST_F(StingerCoreTest, stinger_vtype_get_set) {
   vtype_t vtype;
