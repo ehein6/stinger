@@ -278,7 +278,7 @@ int main(int argc, char *argv[])
   tic();
   struct stinger * S = stinger_shared_new_full(&graph_name, stinger_config);
 
-  size_t graph_sz = S->length + sizeof(struct stinger);
+  size_t graph_sz = calculate_stinger_size(S->max_nv, S->max_neblocks, S->max_netypes, S->max_nvtypes).size;
   LOG_V_A("Data structure allocation time: %lf seconds", toc());
 
   /* load edges from disk (if applicable) */
@@ -372,7 +372,7 @@ int main(int argc, char *argv[])
   server_state.set_stinger_loc(graph_name);
   server_state.set_stinger_sz(graph_sz);
   server_state.set_port(port_streams, port_algs);
-  server_state.set_mon_stinger(graph_name, sizeof(stinger_t) + S->length);
+  server_state.set_mon_stinger(graph_name, calculate_stinger_size(S->max_nv, S->max_neblocks, S->max_netypes, S->max_nvtypes).size);
 
   /* this thread will handle the batch & alg servers */
   /* TODO: bring the thread creation for the alg server to this level */
@@ -426,7 +426,7 @@ cleanup (void)
     LOG_I("done."); fflush(stdout);
 
     struct stinger * S = server_state.get_stinger();
-    size_t graph_sz = S->length + sizeof(struct stinger);
+    size_t graph_sz = calculate_stinger_size(S->max_nv, S->max_neblocks, S->max_netypes, S->max_nvtypes).size;
     
     LOG_V_A("Consistency %ld", (long) stinger_consistency_check(S, S->max_nv));
 

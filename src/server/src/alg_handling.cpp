@@ -68,7 +68,8 @@ handle_alg(struct AcceptedSock * sock, StingerServerState & server_state)
     server_to_alg.set_alg_name(alg_to_server.alg_name());
     server_to_alg.set_action(alg_to_server.action());
     server_to_alg.set_stinger_loc(server_state.get_stinger_loc());
-    server_to_alg.set_stinger_size(sizeof(stinger_t) + server_state.get_stinger()->length);
+    stinger_t * S = server_state.get_stinger();
+    server_to_alg.set_stinger_size(calculate_stinger_size(S->max_nv, S->max_neblocks, S->max_netypes, S->max_nvtypes).size);
     server_to_alg.set_result(ALG_SUCCESS);
 
     if(alg_to_server.action() != REGISTER_ALG) {

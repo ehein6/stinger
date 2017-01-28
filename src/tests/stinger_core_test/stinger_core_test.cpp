@@ -26,6 +26,7 @@ protected:
   struct stinger * S;
 };
 
+#ifdef STINGER_USE_CONTIGUOUS_ALLOCATION
 class StingerSharedCoreTest : public ::testing::Test {
 protected:
   virtual void SetUp() {
@@ -51,6 +52,7 @@ protected:
   struct stinger * S;
   char * graph_name;
 };
+#endif
 
 TEST(StingerCoreCreationTest, AllocateStinger) {
   struct stinger_config_t * stinger_config;
