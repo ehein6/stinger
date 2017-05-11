@@ -16,9 +16,9 @@ extern "C" {
 using namespace gt::stinger;
 
 void
-BreadthFirstSearch::setSource(int64_t v)
+BreadthFirstSearch::setSources(const std::vector<int64_t> &sources)
 {
-    source = v;
+    this->sources = sources;
 }
 
 std::string
@@ -53,8 +53,10 @@ BreadthFirstSearch::onPost(stinger_registered_alg * alg)
     int64_t *marks = (int64_t *)xcalloc(sizeof(int64_t), nv);
     int64_t *queue = (int64_t *)xcalloc(sizeof(int64_t), nv);
     int64_t *Qhead = (int64_t *)xcalloc(sizeof(int64_t), nv);
+    int64_t levels;
 
-    int64_t levels = parallel_breadth_first_search(
+    for (int64_t source : sources) {
+        levels = parallel_breadth_first_search(
             alg->stinger,
             nv,
             source,
@@ -62,8 +64,8 @@ BreadthFirstSearch::onPost(stinger_registered_alg * alg)
             queue,
             Qhead,
             level
-    );
-    
+        );
+    }
     xfree(marks);
     xfree(queue);
     xfree(Qhead);
