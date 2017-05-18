@@ -48,3 +48,9 @@ StreamingConnectedComponents::onPost(stinger_registered_alg * alg)
 
     stinger_scc_copy_component_array(scc_internal, (int64_t *)alg->alg_data);
 }
+
+
+StreamingConnectedComponents::~StreamingConnectedComponents()
+{
+    stinger_scc_release_internals(&scc_internal);
+}

@@ -17,6 +17,7 @@ namespace gt {
         stinger_scc_internal scc_internal;
         stinger_connected_components_stats stats;
     public:
+        ~StreamingConnectedComponents();
         // Overridden from IDynamicGraphAlgorithm
         std::string getName();
         int64_t getDataPerVertex();
