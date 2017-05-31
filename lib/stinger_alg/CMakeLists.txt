@@ -12,6 +12,8 @@ set(sources
   src/graph_partition.c
   src/hits_centrality.c
   src/modularity.c
+  src/spmv_spmspv.c
+  src/pagerank_updating.c
 
   adamic_adar/src/adamic_adar.c
 
@@ -59,6 +61,8 @@ set(headers
   inc/graph_partition.h
   inc/hits_centrality.h
   inc/modularity.h
+  inc/spmv_spmspv.h
+  inc/pagerank_updating.h
 
   adamic_adar/inc/adamic_adar.h
   betweenness/inc/betweenness.h
